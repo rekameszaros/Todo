@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -19,7 +19,12 @@ import {
   FormHelperText,
   Input,
 } from "@chakra-ui/react";
-import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { FaGoogle, FaMoon, FaSun } from "react-icons/fa";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
@@ -28,6 +33,11 @@ const Auth = () => {
   const { toggleColorMode, colorMode } = useColorMode();
   const { isLoggedIn, user } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isCreate, setIsCreate] = useState(true);
+
+  //Google auth
 
   const handleAuth = async () => {
     const provider = new GoogleAuthProvider();
@@ -52,11 +62,14 @@ const Auth = () => {
       });
   };
 
-  function signInWithEmail(email, password) {
-    signInWithEmailAndPassword(auth, email, password)
+  //Sign up with email password
+
+  async function signUpWithEmail() {
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
+        // Signed up
         const user = userCredential.user;
+        onClose();
         console.log(user);
       })
       .catch((error) => {
@@ -65,35 +78,28 @@ const Auth = () => {
         console.error(errorMessage);
       });
   }
-  
-  //   const BasicUsage = () => {
-  //     return (
-  //       <>
-  //         <Button onClick={onOpen}>Open Modal</Button>
 
-  // <Modal isOpen={isOpen} onClose={onClose}>
-  //   <ModalOverlay />
-  //   <ModalContent>
-  //     <ModalHeader>Modal Title</ModalHeader>
-  //     <ModalCloseButton />
-  //     <ModalBody>
-  //       <Lorem count={2} />
-  //     </ModalBody>
+  //Login with email password
 
-  //     <ModalFooter>
-  //       <Button colorScheme='blue' mr={3} onClick={onClose}>
-  //         Close
-  //       </Button>
-  //       <Button variant='ghost'>Secondary Action</Button>
-  //     </ModalFooter>
-  //   </ModalContent>
-  // </Modal>
-  //       </>
-  //     )
-  //   }
+  async function signInWithEmail() {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        onClose();
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
+  }
 
   return (
-    <Box position={"fixed"} top="5%" right="5%">
+    <Box position={"fixed"} top="5%" right="5%" style={{backgroundColor: 'green'}}>
+      <div style={{}}>
+
       <Button onClick={() => toggleColorMode()}>
         {colorMode == "dark" ? <FaSun /> : <FaMoon />}
       </Button>{" "}
@@ -106,41 +112,61 @@ const Auth = () => {
         </>
       )}
       {!isLoggedIn && (
-        <div style={{ display: "inline-list-item" }}>
+        <div>
           <Button leftIcon={<FaGoogle />} onClick={() => handleAuth()}>
-            Login with Google
+            Google login
           </Button>
-          <Button onClick={onOpen}>Login</Button>
+          <Button onClick={() => {setIsCreate(false); onOpen()}}>Login</Button>
+          <Button onClick={() => {setIsCreate(true); onOpen()}}>Create account</Button>
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Login</ModalHeader>
+              <ModalHeader>{isCreate ? "Create" : "Login"}</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
                 <form>
                   <FormControl isRequired>
                     <FormLabel>Email</FormLabel>
-                    <Input placeholder="Email" type="email" />
+                    <Input
+                      placeholder="Email"
+                      type="email"
+                      onChange={(data) => setEmail(data.target.value)}
+                    />
                   </FormControl>
 
                   <FormControl isRequired>
                     <FormLabel>Password</FormLabel>
-                    <Input placeholder="Password" type="password" />
+                    <Input
+                      placeholder="Password"
+                      type="password"
+                      onChange={(data) => setPassword(data.target.value)}
+                    />
                   </FormControl>
                 </form>
               </ModalBody>
 
               <ModalFooter>
-                <Button  mr={3} onClick={onClose}>
+                <Button mr={3} onClick={onClose}>
                   Cancel
                 </Button>
-                <Button colorScheme="blue" onClick={signInWithEmail()}>Login</Button>
+                {isCreate ? (
+                  <Button colorScheme="blue" onClick={signUpWithEmail}>
+                    Create
+                  </Button>
+                ) : (
+                  <Button if colorScheme="blue" onClick={signInWithEmail}>
+                    Login
+                  </Button>
+                )}
               </ModalFooter>
             </ModalContent>
           </Modal>
         </div>
       )}
+      </div>
+
     </Box>
   );
 };
+
 export default Auth;
