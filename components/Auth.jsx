@@ -18,6 +18,7 @@ import {
   FormErrorMessage,
   FormHelperText,
   Input,
+  VStack,
 } from "@chakra-ui/react";
 import {
   signInWithPopup,
@@ -97,9 +98,8 @@ const Auth = () => {
   }
 
   return (
-    <Box position={"fixed"} top="5%" right="5%" style={{backgroundColor: 'green'}}>
-      <div style={{}}>
-
+    <Box position={"fixed"} top="5%" right="5%">
+      <VStack>
       <Button onClick={() => toggleColorMode()}>
         {colorMode == "dark" ? <FaSun /> : <FaMoon />}
       </Button>{" "}
@@ -112,7 +112,7 @@ const Auth = () => {
         </>
       )}
       {!isLoggedIn && (
-        <div>
+        <VStack>
           <Button leftIcon={<FaGoogle />} onClick={() => handleAuth()}>
             Google login
           </Button>
@@ -140,7 +140,7 @@ const Auth = () => {
                       placeholder="Password"
                       type="password"
                       onChange={(data) => setPassword(data.target.value)}
-                    />
+                      />
                   </FormControl>
                 </form>
               </ModalBody>
@@ -161,10 +161,9 @@ const Auth = () => {
               </ModalFooter>
             </ModalContent>
           </Modal>
-        </div>
+        </VStack>
       )}
-      </div>
-
+      </VStack>
     </Box>
   );
 };
