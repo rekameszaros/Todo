@@ -1,20 +1,24 @@
 // import Head from "next/head";
 // import { Inter } from "next/font/google";
 // import styles from "@/styles/Home.module.css";
-
-import source from "../public/list.png";
+//
 
 import { Container, Stack, Image } from "@chakra-ui/react";
 import AddTodo from "../components/AddTodo";
 import Auth from "../components/Auth";
 import TodoList from "../components/TodoList";
+
+import listImage from "../public/list.png";
+
 export default function Home() {
   return (
-    <Container height={"100vh"} maxW="7xl">
-      <Auth />
-      <Stack direction={"colum"}>
-        <Image src={source} />
+    <Container height={"100vh"} maxW="7xl" padding={"8"}>
+      <Stack direction="row" align="center" flex="1">
+        <Image src={listImage.src} alt="List Image" w="400px" h="auto" />
         <AddTodo />
+      </Stack>
+      <Auth />
+      <Stack direction="column" marginTop={10}>
         <TodoList />
       </Stack>
     </Container>
