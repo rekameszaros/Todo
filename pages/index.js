@@ -1,8 +1,3 @@
-// import Head from "next/head";
-// import { Inter } from "next/font/google";
-// import styles from "@/styles/Home.module.css";
-//
-
 import { Container, Stack, Image } from "@chakra-ui/react";
 import AddTodo from "../components/AddTodo";
 import Auth from "../components/Auth";
