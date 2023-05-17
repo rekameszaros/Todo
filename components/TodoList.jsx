@@ -18,7 +18,7 @@ import react from "react";
 const TodoList = () => {
   const [todos, setTodos] = React.useState([]);
   const { user } = useAuth();
-  const [selectValue, setSelectValue] = React.useState("all");
+  const [selectValue, setSelectValue] = React.useState("all"); // #1
   const toast = useToast();
 
   const refreshData = () => {
@@ -31,12 +31,21 @@ const TodoList = () => {
     let q = {};
 
     if(!selectValue || selectValue === "all") {
+        console.log("getting all");
         q = query(collection(db, "todo"), where("user", "==", user.uid));
     }
-    else 
+    else if (selectValue === "pending")
     {
-        q = query(collection(db, "todo"), where("user", "==", user.uid), where("status", "==", selectValue));
+        console.log("getting pending");
+
+        // q = query(collection(db, "todo"), where("user", "==", user.uid), where("status", "==", selectValue));
+        q = query(collection(db, "todo"), where("user", "==", user.uid), where("status", "==", "pending"));
     }
+    else if (selectValue === "completed") {
+        console.log("getting completed");
+
+        q = query(collection(db, "todo"), where("user", "==", user.uid), where("status", "==", "completed"));
+    } 
     
     onSnapshot(q, (querySnapchot) => {
       let ar = [];
@@ -61,7 +70,7 @@ const TodoList = () => {
 
   const handleToggle = async (id, status) => {
     const newStatus = status == "completed" ? "pending" : "completed";
-    await toggleTodoStatus({ docId: id, status: newStatus });
+    await toggleTodoStatus({ docId: id, status: newStatus }).then(() => refreshData());
     toast({
       title: `Todo marked ${newStatus}`,
       status: newStatus == "completed" ? "success" : "warning",
@@ -71,7 +80,7 @@ const TodoList = () => {
   return (
     <Box mt={5}>
       <Select value={selectValue} onChange={event => setSelectValue(event.target.value)} marginBottom={6} maxWidth={"sm"}>
-        <option value="all" >All</option>
+        <option value="all">All</option>
         <option value="pending">Pending</option>
         <option value="completed">Completed</option>
       </Select>

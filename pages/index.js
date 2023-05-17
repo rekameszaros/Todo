@@ -23,26 +23,3 @@ export default function Home() {
     </Flex>
   );
 }
-
-// import { Container, Stack, Image } from "@chakra-ui/react";
-// import AddTodo from "../components/AddTodo";
-// import Auth from "../components/Auth";
-// import TodoList from "../components/TodoList";
-// import Footer from "../components/Footer";
-// import gifImage from "../public/listtwo.gif";
-
-// export default function Home() {
-//   return (
-//     <Container minHeight="100vh" maxW="7xl" padding="8" display="flex" flexDirection="column">
-//       <Stack direction="row" align="center" flex="1">
-//         <Image src={gifImage.src} alt="List Image" w="400px" h="auto" />
-//         <AddTodo />
-//       </Stack>
-//       <Auth />
-//       <Stack direction="column" marginTop={10} flex="1">
-//         <TodoList />
-//       </Stack>
-//       <Footer />
-//     </Container>
-//   );
-// }

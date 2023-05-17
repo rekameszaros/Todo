@@ -99,7 +99,7 @@ const Auth = () => {
 
   return (
     <Box position={"fixed"} top="5%" right="5%">
-      <VStack>
+      <VStack color="black">
       <Button onClick={() => toggleColorMode()}>
         {colorMode == "dark" ? <FaSun /> : <FaMoon />}
       </Button>{" "}
