@@ -19,6 +19,7 @@ import {
   FormHelperText,
   Input,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import {
   signInWithPopup,
@@ -37,6 +38,7 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isCreate, setIsCreate] = useState(true);
+  const toast = useToast();
 
   //Google auth
 
@@ -72,11 +74,21 @@ const Auth = () => {
         const user = userCredential.user;
         onClose();
         console.log(user);
+        toast({
+          title: "Sign up was successful",
+          status: "success",
+          duration: 9000,
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(errorMessage);
+      });
+      toast({
+        title: "Signed up failed",
+        status: "error",
+        duration: 9000,
       });
   }
 
@@ -89,8 +101,18 @@ const Auth = () => {
         const user = userCredential.user;
         onClose();
         console.log(user);
+        toast({
+          title: "Login was successful",
+          status: "success",
+          duration: 9000,
+        });
       })
       .catch((error) => {
+        toast({
+          title: "Login failed",
+          status: "error",
+          duration: 9000,
+        });
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(errorMessage);
@@ -98,7 +120,9 @@ const Auth = () => {
   }
 
   return (
-    <Box position={"fixed"} top="5%" right="5%">
+    // <Box backgroundColor={"yellow"} position={"fixed"} top="5%" right="5%">
+    <Box align="center"
+    flex="1">
       <VStack color="black">
       <Button onClick={() => toggleColorMode()}>
         {colorMode == "dark" ? <FaSun /> : <FaMoon />}

@@ -10,12 +10,20 @@ export default function Home() {
   return (
     <Flex direction={"column"} height={"100vh"} maxW="7xl" pt={8} px={0}>
       <Container maxW="100vw">
-        <Stack direction="row" align="center" flex="1">
+        <Stack
+          direction={{ xl: "row", base: "column" }}
+          align="center"
+          flex="1"
+        >
           <Image src={gifImage.src} alt="List Image" w="400px" h="auto" />
           <AddTodo />
+          <Auth />
         </Stack>
-        <Auth />
-        <Stack direction="column" marginTop={10} marginBottom={10}>
+        <Stack
+          direction="column"
+          marginTop={10}
+          marginBottom={10}
+        >
           <TodoList />
         </Stack>
       </Container>
