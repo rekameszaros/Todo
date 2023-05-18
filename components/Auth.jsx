@@ -77,7 +77,7 @@ const Auth = () => {
         toast({
           title: "Sign up was successful",
           status: "success",
-          duration: 9000,
+          duration: 4000,
         });
       })
       .catch((error) => {
@@ -88,7 +88,7 @@ const Auth = () => {
       toast({
         title: "Signed up failed",
         status: "error",
-        duration: 9000,
+        duration: 4000,
       });
   }
 
@@ -104,14 +104,14 @@ const Auth = () => {
         toast({
           title: "Login was successful",
           status: "success",
-          duration: 9000,
+          duration: 4000,
         });
       })
       .catch((error) => {
         toast({
           title: "Login failed",
           status: "error",
-          duration: 9000,
+          duration: 4000,
         });
         const errorCode = error.code;
         const errorMessage = error.message;

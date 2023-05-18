@@ -24,7 +24,7 @@ const AddTodo = () => {
       toast({
         title: "You must be logged in to create a todo",
         status: "error",
-        duration: 9000,
+        duration: 4000,
         isClosable: true,
       });
       return;
