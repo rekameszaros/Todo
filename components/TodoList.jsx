@@ -80,11 +80,13 @@ const TodoList = () => {
 
   return (
     <Box mt={5}>
-      <Select value={selectValue} onChange={event => setSelectValue(event.target.value)} marginBottom={6} maxWidth={"sm"}>
-        <option value="all">All</option>
-        <option value="pending">Pending</option>
-        <option value="completed">Completed</option>
-      </Select>
+{user && todos && (
+  <Select value={selectValue} onChange={event => setSelectValue(event.target.value)} marginBottom={6} maxWidth={"sm"}>
+    <option value="all">All</option>
+    <option value="pending">Pending</option>
+    <option value="completed">Completed</option>
+  </Select>
+)}
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
         {todos &&
           todos.map((todo) => (
