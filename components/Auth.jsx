@@ -214,6 +214,11 @@ const Auth = () => {
                       onChange={(data) => setPassword(data.target.value)}
                       />
                   </FormControl>
+                  {isCreate && (
+      <Text mt={2} fontSize="sm" color="gray.500">
+        The email needs to be a valid email and password needs to be at least 6 characters.
+      </Text>
+    )}
                 </form>
               </ModalBody>
 
