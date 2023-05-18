@@ -67,57 +67,105 @@ const Auth = () => {
 
   //Sign up with email password
 
+  // async function signUpWithEmail() {
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Signed up
+  //       const user = userCredential.user;
+  //       onClose();
+  //       console.log(user);
+  //       toast({
+  //         title: "Sign up was successful",
+  //         status: "success",
+  //         duration: 4000,
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.error(errorMessage);
+  //     });
+  //     toast({
+  //       title: "Signed up failed",
+  //       status: "error",
+  //       duration: 4000,
+  //     });
+  // }
+
   async function signUpWithEmail() {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        onClose();
-        console.log(user);
-        toast({
-          title: "Sign up was successful",
-          status: "success",
-          duration: 4000,
-        });
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(errorMessage);
-      });
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      onClose();
+      console.log(user);
       toast({
-        title: "Signed up failed",
+        title: "Sign up was successful",
+        status: "success",
+        duration: 4000,
+      });
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(errorMessage);
+      toast({
+        title: "Sign up failed",
         status: "error",
         duration: 4000,
       });
+    }
   }
+  
 
   //Login with email password
 
+  // async function signInWithEmail() {
+  //   signInWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Signed in
+  //       const user = userCredential.user;
+  //       onClose();
+  //       console.log(user);
+  //       toast({
+  //         title: "Login was successful",
+  //         status: "success",
+  //         duration: 4000,
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       toast({
+  //         title: "Login failed",
+  //         status: "error",
+  //         duration: 4000,
+  //       });
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.error(errorMessage);
+  //     });
+  // }
+
   async function signInWithEmail() {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        onClose();
-        console.log(user);
-        toast({
-          title: "Login was successful",
-          status: "success",
-          duration: 4000,
-        });
-      })
-      .catch((error) => {
-        toast({
-          title: "Login failed",
-          status: "error",
-          duration: 4000,
-        });
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(errorMessage);
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      onClose();
+      console.log(user);
+      toast({
+        title: "Login was successful",
+        status: "success",
+        duration: 4000,
       });
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(errorMessage);
+      toast({
+        title: "Login failed",
+        status: "error",
+        duration: 4000,
+      });
+    }
   }
+  
 
   return (
     // <Box backgroundColor={"yellow"} position={"fixed"} top="5%" right="5%">
