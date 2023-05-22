@@ -87,7 +87,9 @@ const TodoList = () => {
     <option value="completed">Completed</option>
   </Select>
 )}
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
+
+{/* className="myCustomSimpleGrid" is for cypress */}
+     <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8} className="myCustomSimpleGrid">
         {todos &&
           todos.map((todo) => (
             <Box

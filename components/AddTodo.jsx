@@ -43,6 +43,8 @@ const AddTodo = () => {
     setStatus("pending");
     toast({ title: "Todo created successfully", status: "success" });
   };
+
+
   return (
     <Box w="40%" margin={"0 auto"} display="block" mt={5}>
       <Stack direction="column">
@@ -70,9 +72,10 @@ const AddTodo = () => {
             Completed ✅
           </option>
         </Select>
+         {/* validate the field during on Click */}
         <Button
           onClick={() => handleTodoCreate()}
-          disabled={title.length < 1 || description.length < 1 || isLoading}
+          isDisabled={!(title && description && isLoggedIn)}
           variantcolor="teal"
           variant="solid"
         >
