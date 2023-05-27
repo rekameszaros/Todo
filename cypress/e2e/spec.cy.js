@@ -1,6 +1,7 @@
 describe('template spec', () => {
   it('passes', () => {
-    cy.visit('http://localhost:3001');
+    // cy.visit('http://localhost:3001');
+    cy.visit('https://todo-lhz126tu7-rekameszaros.vercel.app');
     // checking input - title
 
     // ***targeting by html element
