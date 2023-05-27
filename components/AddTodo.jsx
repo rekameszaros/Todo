@@ -81,7 +81,8 @@ const AddTodo = () => {
         {/* validate the field during on Click */}
         <Button
           onClick={() => handleTodoCreate()}
-          disabled={title.length < 1 || description.length < 1 || isLoading}
+          // disabled={title.length < 1 || description.length < 1 || isLoading}
+          isDisabled={!(title && description && isLoggedIn)}
           variantcolor="teal"
           variant="solid"
           data-testId="test-add-task"
