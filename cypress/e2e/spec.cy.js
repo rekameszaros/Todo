@@ -4,6 +4,7 @@ describe('template spec', () => {
     cy.visit('https://todo-git-main-rekameszaros.vercel.app/');
 
     addToDo('Before Login Title', 'Short description', 'completed');
+    
     //''After login', 'longer description of task', 'completed''
 
     //***New Version */
@@ -31,22 +32,25 @@ describe('template spec', () => {
     }
     //Login Ends
 
+    //adding first todo
+    cy.wait(3000);
     cy.get('button').contains('Add').click();
     cy.get('[data-testId="testToggle"]').first().should('exist').click();
-
+    cy.wait(3000);
     //cy.get('[data-testId="testToggle"]') -> return array of toggles... it can be 0, 1, 2 ... n
     //.first() picks the first one
     //.should('exist') check if it exists (it should because we added it few lines above)
     //.click() -> click on the toggle element
 
     addToDo('After', 'longer description of task', 'pending');
+    cy.wait(3000);
     cy.get('button').contains('Add').click();
     cy.get('[data-testId="testToggle"]').first().should('exist').click();
 
     cy.wait(3000);
     cy.get('[data-testId="test-delete-task"]').first().should('exist').click();
 
-    cy.wait(5000);
+    cy.wait(3000);
     cy.get('a').contains('Logout').click();
   });
 
@@ -85,7 +89,7 @@ describe('template spec', () => {
     cy.get('[data-testId="test-select"]').select(selectValue);
     // Verify the selected value
     cy.get('[data-testId="test-select"]').should('have.value', selectValue);
-
+    cy.wait(3000);
     return;
   }
 });

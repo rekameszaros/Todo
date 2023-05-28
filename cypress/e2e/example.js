@@ -3,7 +3,7 @@
 // import Footer from '../components/Footer';
 
 
-//Unit/component testing
+// Unit/component testing
 
 
 
@@ -19,7 +19,7 @@
 //   });
 // });
 
-//Most basic Cypress commands and methods:
+// Most basic Cypress commands and methods:
 
 // cy.visit(url): Loads a webpage at the specified URL.
 // cy.get(selector): Finds and returns DOM elements that match the given CSS selector.
@@ -34,7 +34,7 @@
 // cy.get(selector).type(text): Finds an input field using the selector and simulates typing the specified text into it.
 
 
-//E2E Original code
+// E2E Original code
 
 // describe('template spec', () => {
 //     it('passes', () => {
