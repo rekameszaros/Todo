@@ -1,26 +1,11 @@
 describe('template spec', () => {
   it('passes', () => {
     // cy.visit('http://localhost:3001');
-    cy.visit('https://todo-lhz126tu7-rekameszaros.vercel.app');
-    // checking input - title
-
-    // ***targeting by html element
-    // cy.get('input').should('be.visible');
-    // cy.get('input').type('some random text');
-
-    //***Targeting by ClassName
-    // cy.get('.css-1f1trk8').should('be.visible');
-    // cy.get('.css-1f1trk8').type('some random text');
+    cy.visit('https://todo-git-main-rekameszaros.vercel.app/');
 
     addToDo('Before Login Title', 'Short description', 'completed');
     //''After login', 'longer description of task', 'completed''
 
-    //Login Start
-    //***Old version */
-    // cy.get('button').contains('Login').click();
-    // cy.get('input[placeholder="Email"]').type('abc@mail.com'); // Target the email input field and type a value
-    // cy.get('input[placeholder="Password"]').type('27031998');
-    // cy.get('footer button:contains("Login")').click();
     //***New Version */
     const userRegistered = true;
     //Create
