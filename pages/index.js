@@ -8,8 +8,8 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <Flex direction={"column"} height={"100vh"} maxW="7xl" pt={8} px={0}>
-      <Container maxW="100vw">
+    <Flex direction={"column"} height={"100vh"} maxW="7xl" pt={8} px={0} >
+      <Container maxW="100vw" >
         <Stack
           direction={{ xl: "row", base: "column" }}
           align="center"

@@ -30,6 +30,7 @@ const toggleTodoStatus = async ({ docId, status }) => {
   }
 };
 
+
 const deleteTodo = async (docId) => {
   try {
     const todoRef = doc(db, "todo", docId);
@@ -38,5 +39,6 @@ const deleteTodo = async (docId) => {
     console.log(err);
   }
 };
+
 
 export { addTodo, toggleTodoStatus, deleteTodo };

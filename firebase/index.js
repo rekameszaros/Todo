@@ -6,16 +6,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// Firebase configuration - old.
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDfH7d2oKsSxSufKq4ftL6bS-C2LggogaM",
-//   authDomain: "next-firebase-todo-d6be1.firebaseapp.com",
-//   projectId: "next-firebase-todo-d6be1",
-//   storageBucket: "next-firebase-todo-d6be1.appspot.com",
-//   messagingSenderId: "117379146814",
-//   appId: "1:117379146814:web:0b76777d9dbfcf9e4e1d6f",
-// };
-
 // Firebase configuration.
 const firebaseConfig = {
   apiKey: "AIzaSyA_PIkGcG2s1MIprkd1tP6cYlt5E9tE6zQ",
