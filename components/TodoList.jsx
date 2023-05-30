@@ -37,7 +37,6 @@ const TodoList = () => {
     } else if (selectValue === 'pending') {
       console.log('getting pending');
 
-      // q = query(collection(db, "todo"), where("user", "==", user.uid), where("status", "==", selectValue));
       q = query(
         collection(db, 'todo'),
         where('user', '==', user.uid),
@@ -53,6 +52,7 @@ const TodoList = () => {
       );
     }
 
+    //listen for real-time updates on the query 'q'
     onSnapshot(q, (querySnapchot) => {
       let ar = [];
       querySnapchot.docs.forEach((doc) => {
@@ -62,7 +62,7 @@ const TodoList = () => {
     });
   };
 
-  //UseEffect triggers when user object changes. So when the user logged in the data is gotten.
+  //UseEffect triggers when data is refreshed whenever the user logs in or selects a different value in the dropdown
   useEffect(() => {
     refreshData();
   }, [user, selectValue]);
@@ -73,6 +73,13 @@ const TodoList = () => {
       toast({ title: 'Todo deleted successfully', status: 'success' });
     }
   };
+  // const handleUpdateTodoTitle = async (id) => {
+  //   let  newTitle = prompt ('edit this title')
+  //   if (newTitle) {
+  //     updateTodoTitle(id, newTitle);
+  //     toast({ title: 'Editing was sucessful', status: 'success' });
+  //   }
+  // };
 
   const handleToggle = async (id, status) => {
     const newStatus = status == 'completed' ? 'pending' : 'completed';

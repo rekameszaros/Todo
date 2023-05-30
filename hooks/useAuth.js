@@ -1,5 +1,5 @@
 // This custom hook is responsible for managing the authentication state and providing the current user and isLoggedIn boolean value.
-// useEffect function is used to set up a listener for the onAuthStateChanged event provided by the Firebase auth object.
+
 
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
