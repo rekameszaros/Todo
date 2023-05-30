@@ -65,33 +65,6 @@ const Auth = () => {
       });
   };
 
-  //Sign up with email password
-
-  // async function signUpWithEmail() {
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((userCredential) => {
-  //       // Signed up
-  //       const user = userCredential.user;
-  //       onClose();
-  //       console.log(user);
-  //       toast({
-  //         title: "Sign up was successful",
-  //         status: "success",
-  //         duration: 4000,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       console.error(errorMessage);
-  //     });
-  //     toast({
-  //       title: "Signed up failed",
-  //       status: "error",
-  //       duration: 4000,
-  //     });
-  // }
-
   async function signUpWithEmail() {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -119,32 +92,6 @@ const Auth = () => {
     }
   }
 
-  //Login with email password
-
-  // async function signInWithEmail() {
-  //   signInWithEmailAndPassword(auth, email, password)
-  //     .then((userCredential) => {
-  //       // Signed in
-  //       const user = userCredential.user;
-  //       onClose();
-  //       console.log(user);
-  //       toast({
-  //         title: "Login was successful",
-  //         status: "success",
-  //         duration: 4000,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       toast({
-  //         title: "Login failed",
-  //         status: "error",
-  //         duration: 4000,
-  //       });
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       console.error(errorMessage);
-  //     });
-  // }
 
   async function signInWithEmail() {
     try {
@@ -183,7 +130,7 @@ const Auth = () => {
         {isLoggedIn && (
           <>
             <Text color="green.500">{user.email}</Text>
-            <Link color="red.500" onClick={() => auth.signOut()}>
+            <Link color="red.500" onClick={() => auth.signOut()} data-testId="test-logout">
               Logout
             </Link>
           </>
